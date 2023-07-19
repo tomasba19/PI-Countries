@@ -8,6 +8,7 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING(3),
       primaryKey: true,
       allowNull: false,
+      unique: true,
     },
     name: {
       type: DataTypes.STRING,
@@ -34,7 +35,7 @@ module.exports = (sequelize) => {
       allowNull: true,
     },
     population: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.REAL,
       allowNull: false,
     },
   },
