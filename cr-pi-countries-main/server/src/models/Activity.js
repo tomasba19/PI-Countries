@@ -5,6 +5,7 @@ module.exports = (sequelize) => {
         
         id: {
             type: DataTypes.INTEGER,
+            autoIncrement: true,
             primaryKey: true,
             allowNull: false,
           },
@@ -16,17 +17,14 @@ module.exports = (sequelize) => {
         difficulty: {
             type: DataTypes.INTEGER,
             allowNull: false,
-            validate: {
-                min: 1,
-                max: 5
-            }
+           
         },
         duration: {
             type: DataTypes.INTEGER,
-            allowNull: true,
+
         },
         season: {
-            type: DataTypes.ENUM('Summer', 'Autunm', 'Winter', 'Spring'),
+            type: DataTypes.STRING,
             allowNull: false,
         },
     },

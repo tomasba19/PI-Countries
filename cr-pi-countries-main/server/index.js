@@ -5,9 +5,10 @@ const PORT = 3001;
 const { saveCountriesDatabase } = require('./src/controllers/fetchCountries')
 
 
-conn.sync({ force: true }).then(async() => {
-await saveCountriesDatabase() // se guardan los datos de la api
-server.listen(PORT, () => {
+conn.sync({ force: true }).then(() => {
+//esta es la conexion al server
+server.listen(PORT, async() => {
+  await saveCountriesDatabase() // se guardan los datos de la api
   console.log(`Server listening on port ${PORT}`);
 })
 }).catch(error => console.error(error))

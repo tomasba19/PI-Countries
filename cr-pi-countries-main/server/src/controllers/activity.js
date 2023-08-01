@@ -1,35 +1,31 @@
-const { Activity, Country } = require("../db");
+const { Country, Activity } = require("../db");
 
 const getActivities = async(req, res) =>{
     try {
-        const activities = await Activity.findAll()
-        return res.status(200).json(activities)
-
-    } catch (error) {
-        return res.status(500).send({error: error.message})
-    }
-};
+        const allActivities = await Activity.findAll();
+        if (!allActivities.length) res.status(200).send("Activities not created yet");
+        else res.status(200).json(allActivities);
+      } catch (error) {
+        res.status(400).json({ error: error.message });
+      }
+    };
 
 const postActivities = async(req, res) => {
+    const { id, name, difficulty, duration, season, countries } = req.body;
     try {
-        const {name, difficulty, duration, season, countries} = req.body
-        if(!name || !difficulty|| !duration|| !season|| !countries.length) throw new Error("Missing info")
-
-        const newActivity = await Activity.create({
-            name:name,
-            difficulty: difficulty,
-            duration: duration,
-            season: season,
+        const activity = await Activity.create({
+            id,
+            name,
+            difficulty,
+            duration,
+            season,
         })
-        const relacionar = await Country.findAll({
-            where:{
-                id: countries
-            }
+        const activitiesToAdd = await Country.findAll({
+            where: { name: countries },
         });
-        await newActivity.setCountries(relacionar)
-        if (!newActivity) throw new Error("Missing Countries")
+        await activity.addCountry(activitiesToAdd);
 
-        return res.status(200).json(newActivity)
+    res.status(200).send("New activity created")
     } catch (error) {
         return res.status(500).send({error: error.message})
     }

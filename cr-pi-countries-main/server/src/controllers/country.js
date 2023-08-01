@@ -1,14 +1,62 @@
-const { Country, Activity } = require("../db");
 const { Op } = require("sequelize");
+const { Country, Activity } = require("../db");
 
+const getCountriesManager = async (req, res) => {
+    const { id } = req.params;
+    const { name } = req.query;
+  
+    try {
+      if (id) {
+        const country = await Country.findByPk(id, {
+          include: Activity,
+        });
+        if (country) {
+          return res.status(200).json(country);
+        } else {
+          return res.status(404).json({ message: "Country not found" });
+        }
+      }
+  
+      let dataBaseCountries;
+      if (!name) {
+        dataBaseCountries = await Country.findAll(
+          {
+          include: Activity,
+          }
+        );
+      } else {
+        dataBaseCountries = await Country.findAll({
+          where: {
+            name: {
+              [Op.iLike]: `%${name}%`,
+            },
+          },
+        });
+      }
+      return res.status(200).json(dataBaseCountries);
+    } catch (error) {
+      return res.status(500).json({ error: error.message });
+    }
+  };
+  
+  module.exports = getCountriesManager;
+
+
+
+
+
+/*
 const getCountries = async (req, res) => {
     try {
-        const countries = await Country.findAll()
-
-        return res.status(200).json(countries)
+        const countries = await Country.findByPk(id, {
+            include:Activity,
+        })
+        if(countries) {
+            return res.status(200).json(countries)};
+        
 
     } catch (error) {
-        return res.status(500).send({error: error.message})
+        return res.status(500).json({message: "Country not found"})
     }
 };
 
@@ -59,3 +107,5 @@ module.exports = {
     getCountryById,
     getCountryByName,
 }
+
+*/

@@ -1,13 +1,13 @@
 const { Router } = require("express");
-const { getCountries, getCountryById, getCountryByName } = require("../controllers/country");
-const { postActivities, getActivities } = require("../controllers/activity");
+const countriesRouter = require("./countriesRoutes")
+const activitiesRouter = require("./activitiesRoutes")
 const router = Router();
 
-router.get("/countries", getCountries)
-router.get("/countries/:idPais",getCountryById)
-router.get("/countries/name", getCountryByName)
-router.post("/activities", postActivities)
-router.get("/activities", getActivities)
 
+router.get("/", (req, res) => {
+    res.send('Hello!')
+})
+router.use("/countries", countriesRouter);
+router.use("/activities", activitiesRouter);
 
 module.exports = router;

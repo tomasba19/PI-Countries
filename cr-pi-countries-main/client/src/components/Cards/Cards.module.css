@@ -1,0 +1,58 @@
+.cardcontainer {
+    display: flex;
+    flex-wrap:wrap;
+    justify-content:space-around;
+    align-items: center;
+    margin:  10px;
+  }
+  .btnflex {
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+  }
+
+
+  .btn {
+    padding: 0.1em 1em;
+    background: none;
+    border: 2px solid #ee6c4d;
+    font-size: 22px;
+    color: #ffffff;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s;
+    border-radius: 12px;
+    background-color: #293241  ;
+    font-weight: bolder;
+    box-shadow: 0 2px 0 2px #000;
+   }
+   
+   .btn:before {
+    content: "";
+    position: absolute;
+    width: 100px;
+    height: 120%;
+    background-color: #e0fbfc;
+    top: 50%;
+    transform: skewX(30deg) translate(-150%, -50%);
+    transition: all 0.5s;
+   }
+   
+   .btn:hover {
+    background-color: #3d5a80;
+    color: #fff;
+    box-shadow: 0 2px 0 2px #3d5a80;
+   }
+   
+   .btn:hover::before {
+    transform: skewX(30deg) translate(150%, -50%);
+    transition-delay: 0.1s;
+   }
+   
+   .btn:active {
+    transform: scale(0.9);
+   }
+
+
+/* ff6700 */
