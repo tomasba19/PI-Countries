@@ -6,7 +6,7 @@ const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose; 
 //linea sirve para conectar nuestra App con la EXTENSION redux DEVTOOLS DEL NAVEGADOR
 
 const store = createStore(
-    reducer,
+    reducer, //gestiona el estado global de la app
     composeEnhancer(applyMiddleware(thunk)) //esta
     //linea sirve para que podamos hacer peticiones a una API/SERVIDOR
 )

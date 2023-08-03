@@ -15,24 +15,24 @@ const FilterBar = () => {
   const allActivities = useSelector((state) => state.AllActivities);
 
 
-  const handleFilter = (event) => {
+  const handleByContinent = (event) => {
     const continents = event.target.value;
     dispatch(filterByContinents(continents));
   };
 
-  const handleSelectChange = (event) => {
+  const handleByActivity = (event) => {
     const selectedActivity = event.target.value;
     dispatch(filterByActivities(selectedActivity));
   };
 
-  const handleFhandleOrderByName = (event) => {
+  const handleOrderByName = (event) => {
     const orderBy = event.target.value;
     console.log(orderBy)
     dispatch(orderByName(orderBy))
 
   };
 
-  const handleFhandleOrderByPopulation = (event) => {
+  const handleOrderByPopulation = (event) => {
     const orderByN = event.target.value;
     console.log(orderByN)
     dispatch(orderByPopulation(orderByN))
@@ -43,7 +43,7 @@ const FilterBar = () => {
     <div className={styles.boxselects}  >
       
       <div className={styles.box}>
-      <select onChange={handleFhandleOrderByName}>
+      <select onChange={handleOrderByName}>
         <option value="" hidden>
         Order By Name
         </option>
@@ -54,7 +54,7 @@ const FilterBar = () => {
       </div>
 
       <div className={styles.box}>
-      <select onChange={handleSelectChange}>
+      <select onChange={handleByActivity}>
         <option value="" hidden>
          Show By Activity
         </option>
@@ -70,7 +70,7 @@ const FilterBar = () => {
       </div>
 
       <div className={styles.box} >
-      <select  onChange={handleFilter}>
+      <select  onChange={handleByContinent}>
         <option value="" hidden>
         Show By Continent
         </option>
@@ -86,7 +86,7 @@ const FilterBar = () => {
       </div>
 
       <div className={styles.box}>
-      <select onChange={handleFhandleOrderByPopulation}>
+      <select onChange={handleOrderByPopulation}>
         <option value="" hidden>
         Order By Population
         </option>

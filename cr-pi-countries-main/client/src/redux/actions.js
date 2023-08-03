@@ -1,7 +1,7 @@
 import axios from "axios";
-import { GET_ALLCONTRIES, 
-         GET_CONTRY_DETAIL, 
-         GET_CONTRY_BY_NAME, 
+import { GET_ALL_COUNTRIES, 
+         GET_COUNTRY_DETAIL, 
+         GET_COUNTRY_BY_NAME, 
          FILTER_BY_CONTINENTS,
          FILTER_BY_ACTIVITIES,
          GET_ALL_ACTIVITIES,
@@ -14,7 +14,7 @@ export function getCountries() {
       try {
           var response = await axios.get('/countries')
           return dispatch({
-              type: GET_ALLCONTRIES,
+              type: GET_ALL_COUNTRIES,
               payload: response.data
           });
       } catch (error) {
@@ -44,7 +44,7 @@ export function getCountryDetail(id) {
         try {
             var response = await axios.get(`/countries/${id}`)
             return dispatch({
-                type: GET_CONTRY_DETAIL,
+                type: GET_COUNTRY_DETAIL,
                 payload: response.data
             });
         } catch (error) {
@@ -58,7 +58,7 @@ export function getCountryDetail(id) {
         try {
             var response = await axios.get(`/countries?name=${name}`)
             return dispatch({
-                type: GET_CONTRY_BY_NAME,
+                type: GET_COUNTRY_BY_NAME,
                 payload: response.data
             });
         } catch (error) {

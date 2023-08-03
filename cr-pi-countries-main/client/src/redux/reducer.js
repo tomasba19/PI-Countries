@@ -1,6 +1,6 @@
-import { GET_ALLCONTRIES , 
-  GET_CONTRY_DETAIL, 
-  GET_CONTRY_BY_NAME, 
+import { GET_ALL_COUNTRIES , 
+  GET_COUNTRY_DETAIL, 
+  GET_COUNTRY_BY_NAME, 
   FILTER_BY_CONTINENTS,
   FILTER_BY_ACTIVITIES,
   GET_ALL_ACTIVITIES,
@@ -14,9 +14,9 @@ CountryDetail: [],
 filteredCountries: null
 };
 
-const reducer = (state = initialState, action) => {
-switch (action.type) {
-case GET_ALLCONTRIES:
+const reducer = (state = initialState, action) => {//maneja las diferentes acciones y actualiza el estado en funcion de la accion
+switch (action.type) { //switch es para manejar diferentes tipos de acciones
+case GET_ALL_COUNTRIES:
 return {
  ...state,
  AllCountries: action.payload
@@ -28,13 +28,13 @@ return {
    AllActivities: action.payload
  };
 
-case GET_CONTRY_DETAIL:
+case GET_COUNTRY_DETAIL:
 return {
  ...state,
  CountryDetail: action.payload
 };
 
-case GET_CONTRY_BY_NAME:
+case GET_COUNTRY_BY_NAME:
  return {
    ...state,
    AllCountries: action.payload,
